@@ -2,6 +2,7 @@
 
 expression {
   value |
+  Identifier |
   Application { "(" expression* ")" }
 }
 
@@ -19,9 +20,13 @@ PropertyName { string }
 
 Array  { "[" list<value>? "]" }
 
+Identifier { identifierNoEscaping | identifierEscaped}
+
 @tokens {
-  // pathElementLiteralNoSpace { $[a-zA-Z_\-0-9\$]+ }
-  // pathElementLiteralWithSpace { "`" $[a-zA-Z_\-0-9 ]+ "`" }
+  @precedence { True, False, Null, Number, identifierNoEscaping }
+
+  identifierNoEscaping { $[a-zA-Z_\-0-9\$]+ }
+  identifierEscaped { "`" ![`]+ "`" }
   
   True  { "true" }
   False { "false" }
