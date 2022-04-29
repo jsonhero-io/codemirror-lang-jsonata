@@ -47,3 +47,11 @@ path.`with space`.to_somewhere
 ==>
 
 Program(Identifier, Operator, Identifier, Operator, Identifier)
+
+# Operators
+
+2 * 4 / 2 = 4
+
+==>
+
+Program(Number, ArithmeticOperator, Number, ArithmeticOperator, Number, Operator, Number)

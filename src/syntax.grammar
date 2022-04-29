@@ -5,6 +5,7 @@ expression {
   Variable |
   Identifier |
   Operator |
+  ArithmeticOperator |
   Application { "(" expression* ")" } |
   Object { "{" expression* "}" } | 
   Array { "[" expression* "]" }
@@ -18,7 +19,7 @@ String { string }
 Identifier { identifierNoEscaping | identifierEscaped}
 
 @tokens {
-  @precedence { True, False, Null, Number, Operator, Variable, identifierNoEscaping }
+  @precedence { True, False, Null, Number, Operator, ArithmeticOperator, Variable, identifierNoEscaping }
 
   //Identifiers
   identifierNoEscaping { $[a-zA-Z_\-0-9\$]+ }
@@ -42,7 +43,9 @@ Identifier { identifierNoEscaping | identifierEscaped}
 
   Variable { "$" $[a-zA-Z0-9\$_]* }
 
-  Operator { "." | "," | "@" | "#" | ";" | ":" | "?" | "+" | "-" | "*" | "/" | "%" | "|" | "=" | "<" | ">" | "^" | "**" | ".." | ":=" | "!=" | "<=" | ">=" | "~>" | "and" | "or" | "in" | "&" | "!" | '~' }
+  Operator { "." | "," | "@" | "#" | ";" | ":" | "?" | "|" | "=" | "<" | ">" | "**" | ".." | ":=" | "!=" | "<=" | ">=" | "~>" | "and" | "or" | "in" | "&" | "!" | '~' }
+
+  ArithmeticOperator { "+" | "-" | "*" | "/" | "%" | "^" }
 
   //Other
   whitespace { $[ \n\r\t] }
