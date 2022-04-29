@@ -5,19 +5,21 @@ expression {
   Variable |
   Identifier |
   Operator |
-  Application { "(" expression* ")" }
+  Application { "(" expression* ")" } |
+  Object { "{" expression* "}" } | 
+  Array { "[" expression* "]" }
 }
 
 //The basic values, the same as JSON
-value { True | False | Null | Number | String | Object | Array }
+value { True | False | Null | Number | String }
 
 String { string }
 
-Object { "{" list<Property>? "}" }
-Property { PropertyName ":" value }
-PropertyName { string | Identifier }
+// Object { "{" list<Property>? "}" }
+// Property { PropertyName ":" value }
+// PropertyName { string, Iden }
 
-Array  { "[" list<value>? "]" }
+// Array  { "[" list<value>? "]" }
 
 Identifier { identifierNoEscaping | identifierEscaped}
 
@@ -51,7 +53,7 @@ Identifier { identifierNoEscaping | identifierEscaped}
   //Other
   whitespace { $[ \n\r\t] }
 
-  "{" "}" "[" "]"
+  "{" "}" "[" "]" "(" ")"
 }
 
 @skip { whitespace }

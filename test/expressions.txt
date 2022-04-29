@@ -9,7 +9,32 @@ Program(Application(True))
 # Variables
 
 $sum()
+$
 
 ==>
 
-Program(Variable, Application)
+Program(Variable, Application, Variable)
+
+# Simple path
+
+path.to.here
+
+==>
+
+Program(Identifier, Operator, Identifier, Operator, Identifier)
+
+# Compound Path
+
+path.["test"]
+
+==>
+
+Program(Identifier, Operator, Array(String))
+
+# Filtered Path
+
+path["name" = 2]
+
+==>
+
+Program(Identifier,Array("[",String,Operator,Number,"]"))
