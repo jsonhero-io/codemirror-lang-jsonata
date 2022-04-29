@@ -4,6 +4,7 @@ expression {
   value |
   Variable |
   Identifier |
+  Operator |
   Application { "(" expression* ")" }
 }
 
@@ -14,14 +15,14 @@ String { string }
 
 Object { "{" list<Property>? "}" }
 Property { PropertyName ":" value }
-PropertyName { string }
+PropertyName { string, Identifier }
 
 Array  { "[" list<value>? "]" }
 
 Identifier { identifierNoEscaping | identifierEscaped}
 
 @tokens {
-  @precedence { True, False, Null, Number, Variable, identifierNoEscaping }
+  @precedence { True, False, Null, Number, Operator, Variable, identifierNoEscaping }
 
   //Identifiers
   identifierNoEscaping { $[a-zA-Z_\-0-9\$]+ }
@@ -44,6 +45,8 @@ Identifier { identifierNoEscaping | identifierEscaped}
   hex  { $[0-9a-fA-F] }
 
   Variable { "$" $[a-zA-Z0-9\$_]* }
+
+  Operator { "." | "[" | "]" | "{" | "}" | "(" | ")" | "," | "@" | "#" | ";" | ":" | "?" | "+" | "-" | "*" | "/" | "%" | "|" | "=" | "<" | ">" | "^" | "**" | ".." | ":=" | "!=" | "<=" | ">=" | "~>" | "and" | "or" | "in" | "&" | "!" | '~' }
 
   //Other
   whitespace { $[ \n\r\t] }
