@@ -7,6 +7,7 @@ expression {
   Application { "(" expression* ")" }
 }
 
+//The basic values, the same as JSON
 value { True | False | Null | Number | String | Object | Array }
 
 String { string }

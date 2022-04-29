@@ -5,3 +5,11 @@
 ==>
 
 Program(Application(True))
+
+# Variables
+
+$sum()
+
+==>
+
+Program(Variable, Application)
