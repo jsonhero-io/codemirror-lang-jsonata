@@ -6,8 +6,14 @@ import jsonata from "jsonata";
 export const jsonataParseLinter =
   () =>
   (view: EditorView): Diagnostic[] => {
+    const documentText = view.state.doc.toString();
+
+    if (documentText.trim().length === 0) {
+      return [];
+    }
+
     try {
-      jsonata(view.state.doc.toString());
+      jsonata(documentText);
     } catch (error: any) {
       if ("position" in error) {
         const pos = getErrorPosition(error, view.state.doc);
