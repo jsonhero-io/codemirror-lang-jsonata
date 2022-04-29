@@ -2,6 +2,7 @@ import {
   completeFromList,
   Completion,
   CompletionSource,
+  snippet,
 } from "@codemirror/autocomplete";
 
 export function autoCompletionList(): CompletionSource {
@@ -9,10 +10,20 @@ export function autoCompletionList(): CompletionSource {
 }
 
 function builtInFunctions(): Completion[] {
-  return builtInFunctionNames.map((name) => ({
-    label: name,
-    type: "function",
-  }));
+  // return builtInFunctionNames.map((name) => ({
+  //   label: `$${name}()`,
+  //   type: "function",
+  // }));
+
+  return [
+    {
+      label: "$sum(items[5m]))",
+      type: "function",
+      detail: "snippet",
+      info: "Sum up all values",
+      apply: snippet("$sum(${items}[5m]))"),
+    },
+  ];
 }
 
 const builtInFunctionNames = [
