@@ -15,7 +15,7 @@ String { string }
 
 Object { "{" list<Property>? "}" }
 Property { PropertyName ":" value }
-PropertyName { string, Identifier }
+PropertyName { string | Identifier }
 
 Array  { "[" list<value>? "]" }
 
