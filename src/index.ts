@@ -41,6 +41,6 @@ export const JSONataLanguage = LRLanguage.define({
   },
 });
 
-export function JSONata() {
+export function jsonata() {
   return new LanguageSupport(JSONataLanguage);
 }
