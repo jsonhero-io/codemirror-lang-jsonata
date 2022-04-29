@@ -17,11 +17,10 @@ function builtInFunctions(): Completion[] {
 
   return [
     {
-      label: "$sum(items[5m]))",
+      label: "$sum()",
       type: "function",
-      detail: "snippet",
       info: "Sum up all values",
-      apply: snippet("$sum(${items}[5m]))"),
+      apply: snippet("$sum(${}))"),
     },
   ];
 }
