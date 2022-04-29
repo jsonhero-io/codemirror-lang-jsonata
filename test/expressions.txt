@@ -1,0 +1,7 @@
+# Brackets
+
+(true)
+
+==>
+
+Program(Application(True))
