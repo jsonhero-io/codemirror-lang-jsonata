@@ -2,6 +2,7 @@
 
 expression {
   value |
+  Variable |
   Identifier |
   Application { "(" expression* ")" }
 }
@@ -19,8 +20,9 @@ Array  { "[" list<value>? "]" }
 Identifier { identifierNoEscaping | identifierEscaped}
 
 @tokens {
-  @precedence { True, False, Null, Number, identifierNoEscaping }
+  @precedence { True, False, Null, Number, Variable, identifierNoEscaping }
 
+  //Identifiers
   identifierNoEscaping { $[a-zA-Z_\-0-9\$]+ }
   identifierEscaped { "`" ![`]+ "`" }
   
@@ -28,16 +30,21 @@ Identifier { identifierNoEscaping | identifierEscaped}
   False { "false" }
   Null  { "null" }
 
+  //Number
   Number { '-'? int frac? exp?  }
   int  { '0' | $[1-9] std.digit* }
   frac { '.' std.digit+ }
   exp  { $[eE] $[+\-]? std.digit+ }
 
+  //String
   string { '"' char* '"' }
   char { $[\u{20}\u{21}\u{23}-\u{5b}\u{5d}-\u{10ffff}] | "\\" esc }
   esc  { $["\\\/bfnrt] | "u" hex hex hex hex }
   hex  { $[0-9a-fA-F] }
 
+  Variable { "$" $[a-zA-Z0-9\$_]* }
+
+  //Other
   whitespace { $[ \n\r\t] }
 
   "{" "}" "[" "]"
