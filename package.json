@@ -1,5 +1,5 @@
 {
-  "name": "@codemirror/lang-jsonata",
+  "name": "@jsonhero/codemirror-lang-jsonata",
   "version": "0.1.0",
   "description": "JSONata language support for CodeMirror",
   "scripts": {
