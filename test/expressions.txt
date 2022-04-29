@@ -34,7 +34,16 @@ Program(Identifier, Operator, Array(String))
 # Filtered Path
 
 path["name" = 2]
+product[-1].id
 
 ==>
 
-Program(Identifier,Array("[",String,Operator,Number,"]"))
+Program(Identifier, Array("[",String,Operator,Number,"]"), Identifier, Array("[", Number, "]"), Operator, Identifier)
+
+# Escaped path
+
+path.`with space`.to_somewhere
+
+==>
+
+Program(Identifier, Operator, Identifier, Operator, Identifier)
