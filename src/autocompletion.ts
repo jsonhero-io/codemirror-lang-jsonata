@@ -20,7 +20,7 @@ function builtInFunctions(): Completion[] {
       label: "$sum()",
       type: "function",
       info: "Sum up all values",
-      apply: snippet("$sum(${}))"),
+      apply: snippet("$sum(${})"),
     },
   ];
 }
