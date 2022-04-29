@@ -1,20 +1,19 @@
 # Booleans
 
-#t
-#f
+false
 
 ==>
 
-Program(Boolean, Boolean)
+Program(BooleanLiteral)
 
-# Identifiers
+# Paths
 
 one
 Two_Three
 
 ==>
 
-Program(Identifier, Identifier)
+Program(Path, Path)
 
 # Strings
 
@@ -24,18 +23,3 @@ Program(Identifier, Identifier)
 ==>
 
 Program(String, String)
-
-# Applications
-
-(begin
-  (when #t
-    (print (concat "hello" " " "world")))
-  (print "DONE"))
-
-==>
-
-Program(Application(
-  Identifier,
-  Application(Identifier, Boolean, Application(
-    Identifier, Application(Identifier, String, String, String)))
-  Application(Identifier, String)))

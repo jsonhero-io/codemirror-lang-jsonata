@@ -3,18 +3,20 @@
 @skip { space | LineComment }
 
 expression {
-  Identifier |
+  Path |
   String |
-  Boolean |
+  BooleanLiteral |
   Application { "(" expression* ")" }
 }
 
 @tokens {
-  Identifier { $[a-zA-Z_\-0-9]+ }
+  @precedence { BooleanLiteral, Path }
+
+  Path { $[a-zA-Z_\-0-9\.]+ }
+
+  BooleanLiteral { "true" | "false" }
 
   String { '"' (!["\\] | "\\" _)* '"' }
-
-  Boolean { "#t" | "#f" }
 
   LineComment { ";" ![\n]* }
 
