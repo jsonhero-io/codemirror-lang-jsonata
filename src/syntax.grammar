@@ -15,12 +15,6 @@ value { True | False | Null | Number | String }
 
 String { string }
 
-// Object { "{" list<Property>? "}" }
-// Property { PropertyName ":" value }
-// PropertyName { string, Iden }
-
-// Array  { "[" list<value>? "]" }
-
 Identifier { identifierNoEscaping | identifierEscaped}
 
 @tokens {
@@ -57,7 +51,5 @@ Identifier { identifierNoEscaping | identifierEscaped}
 }
 
 @skip { whitespace }
-
-list<item> { item ("," item)* }
 
 @detectDelim
