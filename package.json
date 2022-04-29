@@ -16,9 +16,11 @@
   "types": "dist/index.d.ts",
   "sideEffects": false,
   "dependencies": {
-    "@lezer/highlight": "^0.16.0",
     "@codemirror/language": "^0.20.0",
-    "@lezer/lr": "^0.16.0"
+    "@codemirror/lint": "^0.20.1",
+    "@lezer/highlight": "^0.16.0",
+    "@lezer/lr": "^0.16.0",
+    "jsonata": "^1.8.6"
   },
   "devDependencies": {
     "@lezer/generator": "^0.16.0",

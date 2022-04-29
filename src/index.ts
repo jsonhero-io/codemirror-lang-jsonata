@@ -44,3 +44,5 @@ export const JSONataLanguage = LRLanguage.define({
 export function jsonata() {
   return new LanguageSupport(JSONataLanguage);
 }
+
+export { jsonataParseLinter } from "./lint";
