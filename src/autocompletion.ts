@@ -18,7 +18,8 @@ export function autoCompletionList(
 
 function getExtraCompletions(fetchMoreCompletions?: () => Completion[]) {
   if (!fetchMoreCompletions) return [];
-  return fetchMoreCompletions();
+  const completions = fetchMoreCompletions();
+  return completions;
 }
 
 function builtInFunctions(): Completion[] {
