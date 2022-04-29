@@ -9,15 +9,18 @@ expression {
   Application { "(" expression* ")" }
 }
 
-
-pathElement { pathElementNoSpace | pathElementWithSpace }
 Path { (pathElement ".")* pathElement }
 
-@tokens {
-  @precedence { BooleanLiteral, Path, pathElementNoSpace, pathElementWithSpace }
+pathElementLiteral { pathElementLiteralNoSpace | pathElementLiteralWithSpace }
+pathElementLiteralWithIndex { pathElementLiteral arrayIndex }
+pathElement { pathElementLiteral | pathElementLiteralWithIndex }
 
-  pathElementNoSpace { $[a-zA-Z_\-0-9\$]+ }
-  pathElementWithSpace { "`" $[a-zA-Z_\-0-9 ]+ "`" }
+@tokens {
+  @precedence { BooleanLiteral, pathElementLiteralNoSpace, pathElementLiteralWithSpace }
+
+  pathElementLiteralNoSpace { $[a-zA-Z_\-0-9\$]+ }
+  pathElementLiteralWithSpace { "`" $[a-zA-Z_\-0-9 ]+ "`" }
+  arrayIndex { "[" ("-")? $[0-9]+ "]"}
 
   BooleanLiteral { "true" | "false" }
 

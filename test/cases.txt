@@ -11,12 +11,13 @@ Program(BooleanLiteral)
 one
 Two_Three
 path.to.somewhere
-path
 path.`with space`.to_somewhere
+product[-1].id
+product[99].id
 
 ==>
 
-Program(Path, Path, Path, Path, Path)
+Program(Path, Path, Path, Path, Path, Path)
 
 # Strings
 
