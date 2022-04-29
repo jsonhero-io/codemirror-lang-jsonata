@@ -6,14 +6,17 @@ false
 
 Program(BooleanLiteral)
 
-# Paths
+# Path
 
 one
 Two_Three
+path.to.somewhere
+path
+path.`with space`.to_somewhere
 
 ==>
 
-Program(Path, Path)
+Program(Path, Path, Path, Path, Path)
 
 # Strings
 

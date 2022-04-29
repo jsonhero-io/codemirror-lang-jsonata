@@ -9,10 +9,15 @@ expression {
   Application { "(" expression* ")" }
 }
 
-@tokens {
-  @precedence { BooleanLiteral, Path }
 
-  Path { $[a-zA-Z_\-0-9\.]+ }
+pathElement { pathElementNoSpace | pathElementWithSpace }
+Path { (pathElement ".")* pathElement }
+
+@tokens {
+  @precedence { BooleanLiteral, Path, pathElementNoSpace, pathElementWithSpace }
+
+  pathElementNoSpace { $[a-zA-Z_\-0-9\$]+ }
+  pathElementWithSpace { "`" $[a-zA-Z_\-0-9 ]+ "`" }
 
   BooleanLiteral { "true" | "false" }
 
