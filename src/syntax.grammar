@@ -1,36 +1,49 @@
 @top Program { expression* }
 
-@skip { space | LineComment }
-
 expression {
-  Path |
-  String |
-  BooleanLiteral |
+  value |
   Application { "(" expression* ")" }
 }
 
-Path { (pathElement ".")* pathElement }
+// Path { (pathElement ".")* pathElement }
 
-pathElementLiteral { pathElementLiteralNoSpace | pathElementLiteralWithSpace }
-pathElementLiteralWithIndex { pathElementLiteral arrayIndex }
-pathElement { pathElementLiteral | pathElementLiteralWithIndex }
+// pathElement { pathElementLiteralNoSpace | pathElementLiteralWithSpace }
+
+value { True | False | Null | Number | String | Object | Array }
+
+String { string }
+
+Object { "{" list<Property>? "}" }
+Property { PropertyName ":" value }
+PropertyName { string }
+
+Array  { "[" list<value>? "]" }
 
 @tokens {
-  @precedence { BooleanLiteral, pathElementLiteralNoSpace, pathElementLiteralWithSpace }
+  // pathElementLiteralNoSpace { $[a-zA-Z_\-0-9\$]+ }
+  // pathElementLiteralWithSpace { "`" $[a-zA-Z_\-0-9 ]+ "`" }
+  
+  True  { "true" }
+  False { "false" }
+  Null  { "null" }
 
-  pathElementLiteralNoSpace { $[a-zA-Z_\-0-9\$]+ }
-  pathElementLiteralWithSpace { "`" $[a-zA-Z_\-0-9 ]+ "`" }
-  arrayIndex { "[" ("-")? $[0-9]+ "]"}
+  Number { '-'? int frac? exp?  }
+  int  { '0' | $[1-9] std.digit* }
+  frac { '.' std.digit+ }
+  exp  { $[eE] $[+\-]? std.digit+ }
 
-  BooleanLiteral { "true" | "false" }
+  string { '"' char* '"' }
+  char { $[\u{20}\u{21}\u{23}-\u{5b}\u{5d}-\u{10ffff}] | "\\" esc }
+  esc  { $["\\\/bfnrt] | "u" hex hex hex hex }
+  hex  { $[0-9a-fA-F] }
 
-  String { '"' (!["\\] | "\\" _)* '"' }
+  whitespace { $[ \n\r\t] }
 
-  LineComment { ";" ![\n]* }
-
-  space { $[ \t\n\r]+ }
-
-  "(" ")"
+  "{" "}" "[" "]"
 }
+
+@skip { whitespace }
+
+list<item> { item ("," item)* }
 
 @detectDelim
