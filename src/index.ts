@@ -9,6 +9,7 @@ import {
 } from "@codemirror/language";
 import { styleTags, tags as t } from "@lezer/highlight";
 import { autoCompletionList } from "./autocompletion";
+import { Completion, CompletionContext } from "@codemirror/autocomplete";
 
 export const JSONataLanguage = LRLanguage.define({
   parser: parser.configure({
@@ -39,12 +40,17 @@ export const JSONataLanguage = LRLanguage.define({
   },
 });
 
-const autoCompletion = JSONataLanguage.data.of({
-  autocomplete: autoCompletionList(),
-});
+function autoCompletion(fetchMoreCompletions?: () => Completion[]) {
+  return JSONataLanguage.data.of({
+    autocomplete: (context: CompletionContext) =>
+      autoCompletionList(context, fetchMoreCompletions),
+  });
+}
 
-export function jsonata() {
-  return new LanguageSupport(JSONataLanguage, [autoCompletion]);
+export function jsonata(fetchMoreCompletions?: () => Completion[]) {
+  return new LanguageSupport(JSONataLanguage, [
+    autoCompletion(fetchMoreCompletions),
+  ]);
 }
 
 export { jsonataParseLinter } from "./lint";
