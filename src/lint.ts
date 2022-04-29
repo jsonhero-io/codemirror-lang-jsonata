@@ -1,7 +1,7 @@
 import { Diagnostic } from "@codemirror/lint";
 import { EditorView } from "@codemirror/view";
 import { Text } from "@codemirror/state";
-import * as jsonata from "jsonata";
+import jsonata from "jsonata";
 
 export const jsonataParseLinter =
   () =>
