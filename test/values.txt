@@ -1,0 +1,55 @@
+# Booleans
+
+false
+true
+
+==>
+
+Program(False, True)
+
+# Strings
+
+"hello"
+"one\"\\two"
+
+==>
+
+Program(String, String)
+
+# Number
+
+0
+-1
+-14.2
+123.12
+
+==>
+
+Program(Number, Number, Number, Number)
+
+# Null
+
+null
+
+==>
+
+Program(Null)
+
+# Array
+
+["test", 3]
+
+==>
+
+Program(Array(String, Number))
+
+# Object
+
+{
+  "key1": "stringValue",
+  "key2": null
+}
+
+==>
+
+Program(Object(Property(PropertyName, String), Property(PropertyName, Null)))

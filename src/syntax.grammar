@@ -6,10 +6,6 @@ expression {
   Application { "(" expression* ")" }
 }
 
-// Path { (pathElement ".")* pathElement }
-
-// pathElement { pathElementLiteralNoSpace | pathElementLiteralWithSpace }
-
 value { True | False | Null | Number | String | Object | Array }
 
 String { string }
