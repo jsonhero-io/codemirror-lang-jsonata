@@ -47,7 +47,7 @@ product[-1].id
 
 ==>
 
-Program(Identifier, Array("[",String,Operator,Number,"]"), Identifier, Array("[", Number, "]"), Operator, Identifier)
+Program(Identifier, Array(String,Operator,Number), Identifier, Array(Number), Operator, Identifier)
 
 # Escaped path
 

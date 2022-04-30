@@ -58,8 +58,6 @@ Identifier { identifierNoEscaping | identifierEscaped}
 
   //Other
   whitespace { $[ \n\r\t] }
-
-  "{" "}" "[" "]" "(" ")"
 }
 
 list<item> { item ("," item)* }

@@ -41,7 +41,7 @@ Program(Null)
 
 ==>
 
-Program(Array("[",String,Operator,Number,"]"))
+Program(Array(String,Operator,Number))
 
 # Object
 
@@ -52,4 +52,4 @@ Program(Array("[",String,Operator,Number,"]"))
 
 ==>
 
-Program(Object("{",String,Operator,String,Operator,String,Operator,Null,"}"))
+Program(Object(String,Operator,String,Operator,String,Operator,Null))
