@@ -22,7 +22,7 @@ $sum(14, "test")
 
 ==>
 
-Program(Variable, Application, Variable, Application(Number, Operator, String))
+Program(Function(), Function(Number, String))
 
 # Simple path
 
