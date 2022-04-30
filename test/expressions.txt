@@ -8,12 +8,21 @@ Program(Application(True))
 
 # Variables
 
-$sum()
+$sum
 $
 
 ==>
 
-Program(Variable, Application, Variable)
+Program(Variable, Variable)
+
+# Functions
+
+$sum()
+$sum(14, "test")
+
+==>
+
+Program(Function(), Function(Number, String))
 
 # Simple path
 

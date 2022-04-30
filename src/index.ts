@@ -32,6 +32,7 @@ export const JSONataLanguage = LRLanguage.define({
         Operator: t.operator,
         Variable: t.variableName,
         Identifier: t.name,
+        Function: t.function(t.name),
         "( )": t.paren,
         "[ ]": t.squareBracket,
         "{ }": t.brace,

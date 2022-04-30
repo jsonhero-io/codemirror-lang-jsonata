@@ -4,12 +4,19 @@ expression {
   value |
   Variable |
   Identifier |
-  Operator |
-  ArithmeticOperator |
   Application { "(" expression* ")" } |
   Object { "{" expression* "}" } | 
-  Array { "[" expression* "]" }
+  Array { "[" expression* "]" } | 
+  Function |
+  Operator | 
+  ArithmeticOperator
 }
+
+BinaryExpression {
+  expression (Operator | ArithmeticOperator) expression
+}
+
+Function { functionStart list<expression>? ")" }
 
 //The basic values, the same as JSON
 value { True | False | Null | Number | String }
@@ -19,7 +26,7 @@ String { string }
 Identifier { identifierNoEscaping | identifierEscaped}
 
 @tokens {
-  @precedence { True, False, Null, Number, Operator, ArithmeticOperator, Variable, identifierNoEscaping }
+  @precedence { True, False, Null, Number, Operator, ArithmeticOperator, functionStart, Variable, identifierNoEscaping }
 
   //Identifiers
   identifierNoEscaping { $[a-zA-Z_\-0-9\$]+ }
@@ -47,11 +54,15 @@ Identifier { identifierNoEscaping | identifierEscaped}
 
   ArithmeticOperator { "+" | "-" | "*" | "/" | "%" | "^" }
 
+  functionStart { "$" $[a-zA-Z0-9\$_]* "(" }
+
   //Other
   whitespace { $[ \n\r\t] }
 
   "{" "}" "[" "]" "(" ")"
 }
+
+list<item> { item ("," item)* }
 
 @skip { whitespace }
 
