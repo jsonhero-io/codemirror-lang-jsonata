@@ -5,8 +5,10 @@ import {
   snippet,
 } from "@codemirror/autocomplete";
 
-export function autoCompletionList(): CompletionSource {
-  return completeFromList([...builtInFunctions()]);
+export function autoCompletionList(
+  autocompletions: Completion[]
+): CompletionSource {
+  return completeFromList(autocompletions);
 }
 
 function builtInFunctions(): Completion[] {
