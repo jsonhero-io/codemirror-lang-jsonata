@@ -40,16 +40,16 @@ export const JSONataLanguage = LRLanguage.define({
   },
 });
 
-function autoCompletion(additionalCompletions?: Completion[]) {
+function autoCompletion(fetchMoreCompletions?: () => Completion[]) {
   return JSONataLanguage.data.of({
     autocomplete: (context: CompletionContext) =>
-      autoCompletionList(context, additionalCompletions),
+      autoCompletionList(context, fetchMoreCompletions),
   });
 }
 
-export function jsonata(additionalCompletions?: Completion[]) {
+export function jsonata(fetchMoreCompletions?: () => Completion[]) {
   return new LanguageSupport(JSONataLanguage, [
-    autoCompletion(additionalCompletions),
+    autoCompletion(fetchMoreCompletions),
   ]);
 }
 

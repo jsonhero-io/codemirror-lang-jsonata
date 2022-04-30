@@ -8,9 +8,12 @@ import {
 
 export function autoCompletionList(
   context: CompletionContext,
-  additionalCompletions?: Completion[]
+  fetchMoreCompletions?: () => Completion[]
 ): CompletionSource {
-  return completeFromList(functions(additionalCompletions));
+  return completeFromList([
+    ...builtInFunctions(),
+    ...getExtraCompletions(fetchMoreCompletions),
+  ]);
 }
 
 function getExtraCompletions(fetchMoreCompletions?: () => Completion[]) {
@@ -19,13 +22,13 @@ function getExtraCompletions(fetchMoreCompletions?: () => Completion[]) {
   return completions;
 }
 
-function functions(additionalCompletions?: Completion[]): Completion[] {
+function builtInFunctions(): Completion[] {
   // return builtInFunctionNames.map((name) => ({
   //   label: `$${name}()`,
   //   type: "function",
   // }));
 
-  const staticCompletions = [
+  return [
     {
       label: "$sum()",
       type: "function",
@@ -39,10 +42,6 @@ function functions(additionalCompletions?: Completion[]): Completion[] {
       apply: snippet("$string(${})"),
     },
   ];
-
-  if (!additionalCompletions) return staticCompletions;
-
-  return [...staticCompletions, ...additionalCompletions];
 }
 
 const builtInFunctionNames = [
