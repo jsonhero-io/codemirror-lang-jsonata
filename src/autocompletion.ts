@@ -22,6 +22,9 @@ function builtInFunctions(): Completion[] {
       info: "Sum up all values",
       apply: snippet("$sum(${})"),
     },
+    {
+      label: "album.id",
+    },
   ];
 }
 
