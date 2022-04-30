@@ -7,7 +7,6 @@ expression {
   Application { "(" expression* ")" } |
   Object { "{" expression* "}" } | 
   Array { "[" expression* "]" } | 
-  Function |
   Operator | 
   ArithmeticOperator
 }
