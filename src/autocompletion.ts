@@ -1,24 +1,12 @@
 import {
   completeFromList,
   Completion,
-  CompletionContext,
   CompletionSource,
   snippet,
 } from "@codemirror/autocomplete";
 
-export function autoCompletionList(
-  context: CompletionContext,
-  fetchMoreCompletions?: () => Completion[]
-): CompletionSource {
-  return completeFromList([
-    ...builtInFunctions(),
-    ...getExtraCompletions(fetchMoreCompletions),
-  ]);
-}
-
-function getExtraCompletions(fetchMoreCompletions?: () => Completion[]) {
-  if (!fetchMoreCompletions) return [];
-  return fetchMoreCompletions();
+export function autoCompletionList(): CompletionSource {
+  return completeFromList([...builtInFunctions()]);
 }
 
 function builtInFunctions(): Completion[] {
@@ -33,12 +21,6 @@ function builtInFunctions(): Completion[] {
       type: "function",
       info: "Sum up all values",
       apply: snippet("$sum(${})"),
-    },
-    {
-      label: "$string()",
-      type: "function",
-      info: "Casts to a string",
-      apply: snippet("$string(${})"),
     },
   ];
 }
